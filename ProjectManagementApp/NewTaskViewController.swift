@@ -9,7 +9,17 @@
 import UIKit
 
 class NewTaskViewController: UIViewController {
+    
+    
+    @IBAction func cancelBtn(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func addBtn(_ sender: UIBarButtonItem) {
+    }
 
+    @IBOutlet weak var taskTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -99,6 +99,17 @@ class TasksViewController: UIViewController ,UITableViewDelegate , UITableViewDa
         self.present(alert, animated: true, completion: nil)
     }
     
-
+//***************for changing bar button done to edit******************
+    
+    
+//    if self.tableView.editing{
+//    let leftBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Edit, target: self, action: "editTable:")
+//    self.navigationItem.leftBarButtonItem = leftBarButtonItem
+//    self.tableView.setEditing(false, animated: true)
+//    }else{
+//    let leftBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "editTable:")
+//    self.navigationItem.leftBarButtonItem = leftBarButtonItem
+//    self.tableView.setEditing(true, animated: true)
+//    }
 
 }

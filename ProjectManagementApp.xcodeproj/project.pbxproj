@@ -10,7 +10,7 @@
 		0FF8C391AB61901CF2CCC8CF /* Pods_ProjectManagementAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D9AD9E9DFDE0F759587C6DE /* Pods_ProjectManagementAppTests.framework */; };
 		BE13A87D90024E379F8EC7DC /* Pods_ProjectManagementApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 116C2F6382AFEC6A972A165C /* Pods_ProjectManagementApp.framework */; };
 		C71423951F324C6B00A191F7 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71423941F324C6B00A191F7 /* HomePageViewController.swift */; };
-		C71423971F32512900A191F7 /* project.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71423961F32512900A191F7 /* project.swift */; };
+		C740E0B81F3F98D3004CFB28 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = C740E0B71F3F98D3004CFB28 /* Project.swift */; };
 		C75B20591F2FD42E00EDF48A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B20581F2FD42E00EDF48A /* AppDelegate.swift */; };
 		C75B205E1F2FD42E00EDF48A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C75B205C1F2FD42E00EDF48A /* Main.storyboard */; };
 		C75B20601F2FD42E00EDF48A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C75B205F1F2FD42E00EDF48A /* Assets.xcassets */; };
@@ -23,6 +23,7 @@
 		C7703E601F397380007CB7AA /* TasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7703E5F1F397380007CB7AA /* TasksTableViewCell.swift */; };
 		C7703E621F397EAF007CB7AA /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7703E611F397EAF007CB7AA /* NewTaskViewController.swift */; };
 		C7AE558A1F32D6C700826AB0 /* ProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AE55891F32D6C700826AB0 /* ProjectViewController.swift */; };
+		C7ECB0BC1F409F5300622A4B /* NewTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ECB0BB1F409F5300622A4B /* NewTaskTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +57,7 @@
 		6D9AD9E9DFDE0F759587C6DE /* Pods_ProjectManagementAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectManagementAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C03DDE1DE95D84BD7E5C9D2 /* Pods-ProjectManagementApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectManagementApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectManagementApp/Pods-ProjectManagementApp.debug.xcconfig"; sourceTree = "<group>"; };
 		C71423941F324C6B00A191F7 /* HomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
-		C71423961F32512900A191F7 /* project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = project.swift; sourceTree = "<group>"; };
+		C740E0B71F3F98D3004CFB28 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		C75B20551F2FD42E00EDF48A /* ProjectManagementApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectManagementApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C75B20581F2FD42E00EDF48A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C75B205D1F2FD42E00EDF48A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -73,6 +74,7 @@
 		C7703E5F1F397380007CB7AA /* TasksTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksTableViewCell.swift; sourceTree = "<group>"; };
 		C7703E611F397EAF007CB7AA /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		C7AE55891F32D6C700826AB0 /* ProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectViewController.swift; sourceTree = "<group>"; };
+		C7ECB0BB1F409F5300622A4B /* NewTaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 				C7703E5B1F396B45007CB7AA /* DescTableViewCell.swift */,
 				C7703E5D1F396BF8007CB7AA /* ProjectsTableViewCell.swift */,
 				C7703E5F1F397380007CB7AA /* TasksTableViewCell.swift */,
+				C7ECB0BB1F409F5300622A4B /* NewTaskTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -164,7 +167,7 @@
 		C75B207A1F2FEEC900EDF48A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C71423961F32512900A191F7 /* project.swift */,
+				C740E0B71F3F98D3004CFB28 /* Project.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -411,12 +414,13 @@
 				C7AE558A1F32D6C700826AB0 /* ProjectViewController.swift in Sources */,
 				C75B20591F2FD42E00EDF48A /* AppDelegate.swift in Sources */,
 				C7703E581F3919E9007CB7AA /* DashboardViewController.swift in Sources */,
+				C740E0B81F3F98D3004CFB28 /* Project.swift in Sources */,
 				C7703E601F397380007CB7AA /* TasksTableViewCell.swift in Sources */,
 				C7703E5E1F396BF8007CB7AA /* ProjectsTableViewCell.swift in Sources */,
 				C71423951F324C6B00A191F7 /* HomePageViewController.swift in Sources */,
+				C7ECB0BC1F409F5300622A4B /* NewTaskTableViewCell.swift in Sources */,
 				C7703E621F397EAF007CB7AA /* NewTaskViewController.swift in Sources */,
 				C7703E5C1F396B45007CB7AA /* DescTableViewCell.swift in Sources */,
-				C71423971F32512900A191F7 /* project.swift in Sources */,
 				C7703E5A1F395C77007CB7AA /* TasksViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
