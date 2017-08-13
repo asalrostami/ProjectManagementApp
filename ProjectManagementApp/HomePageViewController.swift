@@ -39,70 +39,72 @@ class HomePageViewController: UIViewController , UITableViewDataSource , UITable
     
     @IBAction func addNewProject(_ sender: UIBarButtonItem) {
         
-        let alert: UIAlertController =
-            UIAlertController(title: "Add New Project", message: "Please Enter the Required Information", preferredStyle:  UIAlertControllerStyle.alert)
+        //for popup
         
-        
-         //set the color of the Alert
-        let subView = alert.view.subviews.first!
-        let alertContentView = subView.subviews.first!
-        alertContentView.backgroundColor = UIColor.purple
-        alertContentView.layer.cornerRadius = 5
-        
-        
-        
-        alert.addTextField(configurationHandler: {(text:UITextField!) -> Void in
-            text.placeholder = "Enter project Name"
-            text.borderStyle = .roundedRect
-        })
-        alert.addTextField(configurationHandler: {(text:UITextField!) -> Void in
-            text.placeholder = "Enter Start Date"
-            text.borderStyle = .roundedRect
-        })
-        alert.addTextField(configurationHandler: {(text:UITextField!) -> Void in
-            text.placeholder = "Enter finish Date"
-            text.borderStyle = .roundedRect
-        })
-        
-        //Define a default (OK) alert action with a specific method (handler) to execute if the OK button is clicked
-        let defaultAction: UIAlertAction =
-            UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
-                (action: UIAlertAction!) -> Void in
-                
-           //save to database
-  
-                let projectName = alert.textFields![0] as UITextField
-                let projectStartDate = alert.textFields![1] as UITextField
-                let projectFinishDate = alert.textFields![2] as UITextField
-                
-               if projectName.text != "" && projectStartDate.text != "" && projectFinishDate.text != "" {
-                self.project.name = projectName.text!
-                
-               } else {
-                
-                //popup a alert when the textFields are empty
-                let errorAlert = UIAlertController(title: "Error", message: "Please input the required information", preferredStyle: .alert)
-                errorAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {
-                    (action: UIAlertAction!) -> Void in
-                    
-                    self.present(alert, animated: true, completion: nil)
-                }))
-                self.present(errorAlert, animated: true, completion: nil)                }
-//                //Set the date of the manager object to be the current date
-//                manager.date = NSDate()
+//        let alert: UIAlertController =
+//            UIAlertController(title: "Add New Project", message: "Please Enter the Required Information", preferredStyle:  UIAlertControllerStyle.alert)
+//        
+//        
+//         //set the color of the Alert
+//        let subView = alert.view.subviews.first!
+//        let alertContentView = subView.subviews.first!
+//        alertContentView.backgroundColor = UIColor.purple
+//        alertContentView.layer.cornerRadius = 5
+//        
+//        
+//        
+//        alert.addTextField(configurationHandler: {(text:UITextField!) -> Void in
+//            text.placeholder = "Enter project Name"
+//            text.borderStyle = .roundedRect
+//        })
+//        alert.addTextField(configurationHandler: {(text:UITextField!) -> Void in
+//            text.placeholder = "Enter Start Date"
+//            text.borderStyle = .roundedRect
+//        })
+//        alert.addTextField(configurationHandler: {(text:UITextField!) -> Void in
+//            text.placeholder = "Enter finish Date"
+//            text.borderStyle = .roundedRect
+//        })
+//        
+//        //Define a default (OK) alert action with a specific method (handler) to execute if the OK button is clicked
+//        let defaultAction: UIAlertAction =
+//            UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+//                (action: UIAlertAction!) -> Void in
 //                
-            })
-        //Define a cancel alert action with no method (handler) to execute if the cancel button is clicked
-        let cancelAction: UIAlertAction =
-            UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler:{
-                (action: UIAlertAction!) -> Void in
-            })
-        //Associate the cancel action to the alert
-        alert.addAction(cancelAction)
-        //Associate the default (OK) action to the alert
-        alert.addAction(defaultAction)
-        //Show the alert to the user
-        present(alert, animated: true, completion: nil)
+//           //save to database
+//  
+//                let projectName = alert.textFields![0] as UITextField
+//                let projectStartDate = alert.textFields![1] as UITextField
+//                let projectFinishDate = alert.textFields![2] as UITextField
+//                
+//               if projectName.text != "" && projectStartDate.text != "" && projectFinishDate.text != "" {
+//                self.project.name = projectName.text!
+//                
+//               } else {
+//                
+//                //popup a alert when the textFields are empty
+//                let errorAlert = UIAlertController(title: "Error", message: "Please input the required information", preferredStyle: .alert)
+//                errorAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {
+//                    (action: UIAlertAction!) -> Void in
+//                    
+//                    self.present(alert, animated: true, completion: nil)
+//                }))
+//                self.present(errorAlert, animated: true, completion: nil)                }
+////                //Set the date of the manager object to be the current date
+////                manager.date = NSDate()
+////                
+//            })
+//        //Define a cancel alert action with no method (handler) to execute if the cancel button is clicked
+//        let cancelAction: UIAlertAction =
+//            UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler:{
+//                (action: UIAlertAction!) -> Void in
+//            })
+//        //Associate the cancel action to the alert
+//        alert.addAction(cancelAction)
+//        //Associate the default (OK) action to the alert
+//        alert.addAction(defaultAction)
+//        //Show the alert to the user
+//        present(alert, animated: true, completion: nil)
      }
     
 

@@ -1,31 +1,33 @@
 //
-//  NewTaskViewController.swift
+//  NotesViewController.swift
 //  ProjectManagementApp
 //
-//  Created by Asal Rostami on 2017-08-08.
+//  Created by Asal Rostami on 2017-08-13.
 //  Copyright © 2017 Asal Rostami. All rights reserved.
 //
 
 import UIKit
 
-class NewTaskViewController: UIViewController , UITableViewDataSource , UITableViewDelegate{
+class NotesViewController: UIViewController , UITableViewDataSource , UITableViewDelegate{
     
     
     @IBAction func cancelBtn(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBOutlet weak var newTaskTxt: UITextView!
-    
-    @IBAction func addBtn(_ sender: UIBarButtonItem) {
-    }
 
-    @IBOutlet weak var taskTableView: UITableView!
+    @IBAction func saveBtn(_ sender: UIBarButtonItem) {
+    }
+    
+    @IBOutlet weak var noteTxt: UITextView!
+    
+    
+    @IBOutlet weak var notesTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        taskTableView.delegate = self
-        taskTableView.dataSource = self
+        notesTableView.delegate = self
+        notesTableView.dataSource = self
 
         // Do any additional setup after loading the view.
     }
@@ -34,12 +36,9 @@ class NewTaskViewController: UIViewController , UITableViewDataSource , UITableV
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    @IBAction func changeStatus(_ sender: UIButton) {
-    }
     var projectName = ["asalPro" , "siamakPro" , "JuliePro" , "aPro","bPro","cpro"]
-    
+
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -49,11 +48,11 @@ class NewTaskViewController: UIViewController , UITableViewDataSource , UITableV
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellNewTask", for: indexPath) as! NewTaskTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellnotes", for: indexPath) as! NotesTableViewCell
         
         let proName = projectName[indexPath.row]
         
-        cell.taskLBL.text = proName
+        cell.descLbl.text = proName
         
         return cell
     }
