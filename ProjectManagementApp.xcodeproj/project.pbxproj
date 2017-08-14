@@ -21,6 +21,10 @@
 		C7703E601F397380007CB7AA /* TasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7703E5F1F397380007CB7AA /* TasksTableViewCell.swift */; };
 		C7703E621F397EAF007CB7AA /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7703E611F397EAF007CB7AA /* NewTaskViewController.swift */; };
 		C7AE558A1F32D6C700826AB0 /* ProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AE55891F32D6C700826AB0 /* ProjectViewController.swift */; };
+		C7D61D931F420FFC002439A4 /* ProjectTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D61D921F420FFC002439A4 /* ProjectTrackingViewController.swift */; };
+		C7D61D951F421074002439A4 /* DashboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D61D941F421074002439A4 /* DashboardTableViewCell.swift */; };
+		C7D61D971F421D91002439A4 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D61D961F421D91002439A4 /* Task.swift */; };
+		C7D61D991F4223F1002439A4 /* ProjectTrackingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D61D981F4223F1002439A4 /* ProjectTrackingTableViewCell.swift */; };
 		C7ECB0BC1F409F5300622A4B /* NewTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ECB0BB1F409F5300622A4B /* NewTaskTableViewCell.swift */; };
 		C7ECB0BE1F40CD2800622A4B /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ECB0BD1F40CD2800622A4B /* NotesViewController.swift */; };
 		C7ECB0C01F40CDCD00622A4B /* NotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ECB0BF1F40CDCD00622A4B /* NotesTableViewCell.swift */; };
@@ -73,6 +77,10 @@
 		C7703E5F1F397380007CB7AA /* TasksTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksTableViewCell.swift; sourceTree = "<group>"; };
 		C7703E611F397EAF007CB7AA /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		C7AE55891F32D6C700826AB0 /* ProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectViewController.swift; sourceTree = "<group>"; };
+		C7D61D921F420FFC002439A4 /* ProjectTrackingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectTrackingViewController.swift; sourceTree = "<group>"; };
+		C7D61D941F421074002439A4 /* DashboardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardTableViewCell.swift; sourceTree = "<group>"; };
+		C7D61D961F421D91002439A4 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		C7D61D981F4223F1002439A4 /* ProjectTrackingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectTrackingTableViewCell.swift; sourceTree = "<group>"; };
 		C7ECB0BB1F409F5300622A4B /* NewTaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskTableViewCell.swift; sourceTree = "<group>"; };
 		C7ECB0BD1F40CD2800622A4B /* NotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		C7ECB0BF1F40CDCD00622A4B /* NotesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesTableViewCell.swift; sourceTree = "<group>"; };
@@ -152,6 +160,7 @@
 				C7703E591F395C77007CB7AA /* TasksViewController.swift */,
 				C7703E611F397EAF007CB7AA /* NewTaskViewController.swift */,
 				C7ECB0BD1F40CD2800622A4B /* NotesViewController.swift */,
+				C7D61D921F420FFC002439A4 /* ProjectTrackingViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -163,6 +172,8 @@
 				C7ECB0BB1F409F5300622A4B /* NewTaskTableViewCell.swift */,
 				C7ECB0BF1F40CDCD00622A4B /* NotesTableViewCell.swift */,
 				C7ECB0C11F40E23A00622A4B /* ProjectsTableViewCell.swift */,
+				C7D61D941F421074002439A4 /* DashboardTableViewCell.swift */,
+				C7D61D981F4223F1002439A4 /* ProjectTrackingTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -171,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				C740E0B71F3F98D3004CFB28 /* Project.swift */,
+				C7D61D961F421D91002439A4 /* Task.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -416,12 +428,16 @@
 			files = (
 				C7AE558A1F32D6C700826AB0 /* ProjectViewController.swift in Sources */,
 				C75B20591F2FD42E00EDF48A /* AppDelegate.swift in Sources */,
+				C7D61D991F4223F1002439A4 /* ProjectTrackingTableViewCell.swift in Sources */,
 				C7703E581F3919E9007CB7AA /* DashboardViewController.swift in Sources */,
 				C740E0B81F3F98D3004CFB28 /* Project.swift in Sources */,
 				C7703E601F397380007CB7AA /* TasksTableViewCell.swift in Sources */,
 				C71423951F324C6B00A191F7 /* HomePageViewController.swift in Sources */,
+				C7D61D951F421074002439A4 /* DashboardTableViewCell.swift in Sources */,
+				C7D61D971F421D91002439A4 /* Task.swift in Sources */,
 				C7ECB0C01F40CDCD00622A4B /* NotesTableViewCell.swift in Sources */,
 				C7ECB0C21F40E23A00622A4B /* ProjectsTableViewCell.swift in Sources */,
+				C7D61D931F420FFC002439A4 /* ProjectTrackingViewController.swift in Sources */,
 				C7ECB0BC1F409F5300622A4B /* NewTaskTableViewCell.swift in Sources */,
 				C7ECB0BE1F40CD2800622A4B /* NotesViewController.swift in Sources */,
 				C7703E621F397EAF007CB7AA /* NewTaskViewController.swift in Sources */,
