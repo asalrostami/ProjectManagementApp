@@ -11,6 +11,13 @@ import UIKit
 class TasksTableViewCell: UITableViewCell {
 
     @IBOutlet weak var taskLbl: UILabel!
+    
+    @IBOutlet weak var startDateOfTaskCell: UILabel!
+    
+    
+    @IBOutlet weak var statusTaskCell: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

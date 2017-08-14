@@ -25,6 +25,8 @@
 		C7D61D951F421074002439A4 /* DashboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D61D941F421074002439A4 /* DashboardTableViewCell.swift */; };
 		C7D61D971F421D91002439A4 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D61D961F421D91002439A4 /* Task.swift */; };
 		C7D61D991F4223F1002439A4 /* ProjectTrackingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D61D981F4223F1002439A4 /* ProjectTrackingTableViewCell.swift */; };
+		C7D61D9B1F423C85002439A4 /* TaskStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D61D9A1F423C85002439A4 /* TaskStatusViewController.swift */; };
+		C7D61D9E1F424D6C002439A4 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D61D9D1F424D6C002439A4 /* DatabaseManager.swift */; };
 		C7ECB0BC1F409F5300622A4B /* NewTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ECB0BB1F409F5300622A4B /* NewTaskTableViewCell.swift */; };
 		C7ECB0BE1F40CD2800622A4B /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ECB0BD1F40CD2800622A4B /* NotesViewController.swift */; };
 		C7ECB0C01F40CDCD00622A4B /* NotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ECB0BF1F40CDCD00622A4B /* NotesTableViewCell.swift */; };
@@ -81,6 +83,8 @@
 		C7D61D941F421074002439A4 /* DashboardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardTableViewCell.swift; sourceTree = "<group>"; };
 		C7D61D961F421D91002439A4 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		C7D61D981F4223F1002439A4 /* ProjectTrackingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectTrackingTableViewCell.swift; sourceTree = "<group>"; };
+		C7D61D9A1F423C85002439A4 /* TaskStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskStatusViewController.swift; sourceTree = "<group>"; };
+		C7D61D9D1F424D6C002439A4 /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		C7ECB0BB1F409F5300622A4B /* NewTaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskTableViewCell.swift; sourceTree = "<group>"; };
 		C7ECB0BD1F40CD2800622A4B /* NotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		C7ECB0BF1F40CDCD00622A4B /* NotesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesTableViewCell.swift; sourceTree = "<group>"; };
@@ -130,6 +134,7 @@
 		C75B20571F2FD42E00EDF48A /* ProjectManagementApp */ = {
 			isa = PBXGroup;
 			children = (
+				C7D61D9C1F424D48002439A4 /* Manager */,
 				C75B207A1F2FEEC900EDF48A /* Model */,
 				C75B20791F2FEEBF00EDF48A /* View */,
 				C75B20781F2FEE8000EDF48A /* Controller */,
@@ -161,6 +166,7 @@
 				C7703E611F397EAF007CB7AA /* NewTaskViewController.swift */,
 				C7ECB0BD1F40CD2800622A4B /* NotesViewController.swift */,
 				C7D61D921F420FFC002439A4 /* ProjectTrackingViewController.swift */,
+				C7D61D9A1F423C85002439A4 /* TaskStatusViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -185,6 +191,14 @@
 				C7D61D961F421D91002439A4 /* Task.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		C7D61D9C1F424D48002439A4 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				C7D61D9D1F424D6C002439A4 /* DatabaseManager.swift */,
+			);
+			name = Manager;
 			sourceTree = "<group>";
 		};
 		EC61545AD5123CA423E16627 /* Frameworks */ = {
@@ -428,11 +442,13 @@
 			files = (
 				C7AE558A1F32D6C700826AB0 /* ProjectViewController.swift in Sources */,
 				C75B20591F2FD42E00EDF48A /* AppDelegate.swift in Sources */,
+				C7D61D9B1F423C85002439A4 /* TaskStatusViewController.swift in Sources */,
 				C7D61D991F4223F1002439A4 /* ProjectTrackingTableViewCell.swift in Sources */,
 				C7703E581F3919E9007CB7AA /* DashboardViewController.swift in Sources */,
 				C740E0B81F3F98D3004CFB28 /* Project.swift in Sources */,
 				C7703E601F397380007CB7AA /* TasksTableViewCell.swift in Sources */,
 				C71423951F324C6B00A191F7 /* HomePageViewController.swift in Sources */,
+				C7D61D9E1F424D6C002439A4 /* DatabaseManager.swift in Sources */,
 				C7D61D951F421074002439A4 /* DashboardTableViewCell.swift in Sources */,
 				C7D61D971F421D91002439A4 /* Task.swift in Sources */,
 				C7ECB0C01F40CDCD00622A4B /* NotesTableViewCell.swift in Sources */,

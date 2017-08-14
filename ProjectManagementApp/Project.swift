@@ -12,14 +12,14 @@ class Project {
     
     
     var name = ""
-    var startDate = Date()
-    var finishDate = Date()
+    var startDate = ""
+    var finishDate = ""
     
     init() {
         
     }
     
-    init(name:String,startDate:Date,finishDate:Date) {
+    init(name:String,startDate:String,finishDate:String) {
         self.name = name
         self.startDate = startDate
         self.finishDate = finishDate

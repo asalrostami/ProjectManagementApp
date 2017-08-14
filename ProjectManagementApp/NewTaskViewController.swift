@@ -22,6 +22,10 @@ class NewTaskViewController: UIViewController , UITableViewDataSource , UITableV
 
     @IBOutlet weak var taskTableView: UITableView!
     
+    @IBOutlet weak var startDateTaskLbl: UILabel!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         taskTableView.delegate = self

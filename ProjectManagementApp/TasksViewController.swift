@@ -48,6 +48,40 @@ class TasksViewController: UIViewController ,UITableViewDelegate , UITableViewDa
         
         return cell
     }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete { //The user click on the delete button
+            
+            // Identify the item to delete
+            let tasksName = tasks[indexPath.row]
+            
+            
+            let title = "Delete \(tasksName)?"
+            let message = "Are you sure you want to delete this item?"
+            
+            let ac = UIAlertController(title: title,
+                                       message: message,
+                                       preferredStyle: UIAlertControllerStyle.actionSheet)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+            ac.addAction(cancelAction)
+            
+            let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive,
+                                             handler: { (action) -> Void in
+                                                // Remove the item from the store
+                                                // self.itemlist.removeItem(item)
+                                                
+                                                // Also remove that row from the table view with an animation
+                                                //self.projectsTableView.deleteRows(at: [indexPath], with: .automatic)
+            })
+            ac.addAction(deleteAction)
+            
+            // Present the alert controller
+            present(ac, animated: true, completion: nil)
+        } /*else if editingStyle == .insert {
+         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+         }   */
+    }
+
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //        let message = messages[indexPath.row]
