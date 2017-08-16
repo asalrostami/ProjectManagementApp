@@ -33,13 +33,13 @@ class ProjectViewController: UIViewController {
         
            
             let project = Project()
-            project.projectId = createId(Project.self)
+            project.id = createId(Project.self)
             project.name = nameTxtField.text!
             project.startDate = startDateTxtField.text!
             project.finishDate = finishDateTxtField.text!
             
             saveData(project, isUpdate: true)
-            print("added in the realm successfully by id\(project.projectId)")
+            print("added in the realm successfully by id\(project.id)")
             
         } else {
             showAlert(text: "please Enter the required Information")

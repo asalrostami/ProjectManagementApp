@@ -34,16 +34,22 @@ class HomePageViewController: UIViewController , UITableViewDataSource , UITable
         
         
         deleteAll()
+       
+      
+
         
+        // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        
+        projects.removeAll()
         readData(Project.self, predicate: nil) { (results) in
             for each in results
             {
                 projects.append(each)
+                projectsTableView.reloadData()
             }
         }
-
-        
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -146,6 +152,7 @@ class HomePageViewController: UIViewController , UITableViewDataSource , UITable
                     for each in results
                     {
                         self.projects.append(each)
+                        self.projectsTableView.reloadData()
                     }
                 })
             }
