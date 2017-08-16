@@ -7,19 +7,31 @@
 //
 
 import UIKit
+import RealmSwift
 
-class DashboardViewController: UIViewController , UITableViewDataSource , UITableViewDelegate{
+class DashboardViewController: UIViewController , UITableViewDataSource , UITableViewDelegate , UITextFieldDelegate{
     
     
     @IBOutlet weak var dashboardTableView: UITableView!
-    var projectName = ["asalPro" , "siamakPro" , "JuliePro" , "aPro","bPro","cpro"]
-
     
+    @IBOutlet weak var searchTxt: UITextField!
+    
+    var projects = [Project]()
+    
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
         dashboardTableView.delegate = self
         dashboardTableView.dataSource = self
+        searchTxt.delegate = self
+        
+        readData(Project.self, predicate: nil) { (results) in
+            for each in results
+            {
+                projects.append(each)
+            }
+        }
 
 
         // Do any additional setup after loading the view.
@@ -36,45 +48,47 @@ class DashboardViewController: UIViewController , UITableViewDataSource , UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return projectName.count
+        return projects.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellDashboard", for: indexPath) as! DashboardTableViewCell
+    
         
-        let proName = projectName[indexPath.row]
-        
-        cell.projectNameLblCell.text = proName
+        cell.projectNameLblCell.text = projects[indexPath.row].name
+        cell.startDateProjectCell.text = projects[indexPath.row].startDate
         
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        let message = messages[indexPath.row]
-        //
-        //        guard let chatPartnerId = message.chatPartnerId() else{
-        //            return
-        //        }
-        //        let ref = Database.database().reference().child("Users").child(chatPartnerId)
-        //
-        //        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-        //
-        //            guard let dictionary = snapshot.value as? [String:AnyObject] else{
-        //                return
-        //            }
-        //
-        //            let user = User()
-        //            user.id = chatPartnerId
-        //            user.setValuesForKeys(dictionary)
-        //            self.showChatControllerForUser(user: user)
-        //
-        //        }, withCancel: nil)
-    }
-    
-        // Override to support rearranging the table view.
-    func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        
-        //itemlist.moveItem(from: fromIndexPath.row, to: to.row)
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        self.projects.removeAll()
+        //print(projects.count)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            if (textField.text?.characters.count)! > 0
+            {
+                //search in realm
+                let realm = try! Realm()
+                let predicate = NSPredicate(format: "name CONTAINS [c] %@", textField.text!)
+                let filter_project = realm.objects(Project).filter(predicate)
+                for each in filter_project
+                {
+                    self.projects.append(each)
+                    self.dashboardTableView.reloadData()
+                }
+                
+            } else
+            {
+                readData(Project.self, predicate: nil, completion: { (results) in
+                    for each in results
+                    {
+                        self.projects.append(each)
+                    }
+                })
+            }
+            print(self.projects.count)
+        }
+        return true
     }
     
 

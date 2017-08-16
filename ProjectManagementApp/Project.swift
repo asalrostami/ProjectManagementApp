@@ -2,29 +2,22 @@
 //  Project.swift
 //  ProjectManagementApp
 //
-//  Created by Asal Rostami on 2017-08-12.
+//  Created by Asal Rostami on 2017-08-15.
 //  Copyright © 2017 Asal Rostami. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import RealmSwift
 
-class Project {
+class Project: Object {
     
+    dynamic var id : Int = 0
+    dynamic var name : String = ""
+    dynamic var startDate : String = ""
+    dynamic var finishDate : String = ""
     
-    var name = ""
-    var startDate = ""
-    var finishDate = ""
-    
-    init() {
-        
-    }
-    
-    init(name:String,startDate:String,finishDate:String) {
-        self.name = name
-        self.startDate = startDate
-        self.finishDate = finishDate
-    }
+  
     
 }
-    
+
 

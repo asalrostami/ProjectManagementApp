@@ -12,6 +12,8 @@ class DashboardTableViewCell: UITableViewCell {
     
     
     @IBOutlet weak var projectNameLblCell: UILabel!
+    
+    @IBOutlet weak var startDateProjectCell: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
