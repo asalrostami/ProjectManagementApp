@@ -11,11 +11,17 @@ import RealmSwift
 
 class Task: Object {
     
-    dynamic var idTask : Int = 0
+    
+    dynamic var taskId : Int = 0
+    dynamic var projectId : Int = 0
     dynamic var taskName : String = ""
     dynamic var startDate : String = ""
     dynamic var status : Int = 0
     dynamic var finishDate : String = ""
+    
+    override class func primaryKey() -> String {
+        return "taskId"
+    }
     
 
     

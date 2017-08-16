@@ -35,7 +35,7 @@ public func readData<T:Object>(_ model: T.Type, predicate: String?, completion: 
 
 // MARK: - Delete
 
-public func delete<T:Object>(_ model: T) {
+public func deleteRealm<T:Object>(_ model: T) {
     let realm = try! Realm()
     try! realm.write {
         realm.delete(model)
@@ -49,5 +49,20 @@ public func deleteAll() {
         realm.deleteAll()
     }
     
+}
+/// ##### Create an id 
+public func createId<T>(_ model: T) -> Int
+{
+    let realm = try! Realm()
+    
+    let allModels = realm.objects(model as! Object.Type)
+    if allModels.count > 0 {
+        let lastId = allModels.max(ofProperty: "id") as Int?
+        return lastId! + 1
+    } else {
+        return 1
+    }
+    
+   
 }
 

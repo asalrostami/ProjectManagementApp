@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ProjectViewController: UIViewController {
     var name: String!
 
+    var projects = [Project]()
+    
     @IBAction func cancelBtn(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -25,6 +28,27 @@ class ProjectViewController: UIViewController {
     
 
     @IBAction func saveBtn(_ sender: UIBarButtonItem) {
+        if nameTxtField.text != "" && startDateTxtField.text != "" && finishDateTxtField.text != ""
+        {
+        
+           
+            let project = Project()
+            project.projectId = createId(Project.self)
+            project.name = nameTxtField.text!
+            project.startDate = startDateTxtField.text!
+            project.finishDate = finishDateTxtField.text!
+            
+            saveData(project, isUpdate: true)
+            print("added in the realm successfully by id\(project.projectId)")
+            
+        } else {
+            showAlert(text: "please Enter the required Information")
+        }
+        //Set the date of the manager object to be the current date
+       // manager.date = NSDate()
+        
+        
+        
     }
     
     var datePicker : UIDatePicker!
@@ -123,6 +147,14 @@ class ProjectViewController: UIViewController {
         }
     }
 
-    
+    func showAlert(text:String)  {
+        let alert = UIAlertController(title: "Attention", message: text, preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+    }
 
 }
