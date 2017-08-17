@@ -13,7 +13,7 @@ class Task: Object {
     
     
     dynamic var taskId : Int = 0
-    dynamic var projectId : Int = 0
+    dynamic var id : Int = 0
     dynamic var taskName : String = ""
     dynamic var startDate : String = ""
     dynamic var status : Int = 0

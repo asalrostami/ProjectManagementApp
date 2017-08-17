@@ -199,7 +199,7 @@
                                                     </tableViewCellContentView>
                                                     <connections>
                                                         <outlet property="proNameLbl" destination="92L-L8-XMM" id="grp-NU-BeD"/>
-                                                        <segue destination="Dxe-DW-0ge" kind="show" id="Pwh-fM-YON"/>
+                                                        <segue destination="Dxe-DW-0ge" kind="show" identifier="proToNewTask" id="Pwh-fM-YON"/>
                                                     </connections>
                                                 </tableViewCell>
                                             </prototypes>
@@ -1295,8 +1295,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="New Task" image="icons8-Tasklist-25" id="VMS-4h-g9m"/>
                     <connections>
+                        <outlet property="navitem" destination="htC-pw-5MZ" id="IFm-Ei-jFh"/>
                         <outlet property="newTaskTxt" destination="TwV-t5-TJV" id="rwn-NG-YXE"/>
                         <outlet property="startDateTaskLbl" destination="HXl-zs-JuX" id="prF-tc-2pw"/>
+                        <outlet property="statusLbl" destination="dqk-3r-MGg" id="BLx-3y-Rv2"/>
                         <outlet property="taskTableView" destination="67B-pd-zwX" id="wSB-we-eJ4"/>
                     </connections>
                 </viewController>

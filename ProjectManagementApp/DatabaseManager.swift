@@ -51,13 +51,13 @@ public func deleteAll() {
     
 }
 /// ##### Create an id 
-public func createId<T>(_ model: T) -> Int
+public func createId<T>(_ model: T , id:String) -> Int
 {
     let realm = try! Realm()
     
     let allModels = realm.objects(model as! Object.Type)
     if allModels.count > 0 {
-        let lastId = allModels.max(ofProperty: "id") as Int?
+        let lastId = allModels.max(ofProperty: id) as Int?
         return lastId! + 1
     } else {
         return 1

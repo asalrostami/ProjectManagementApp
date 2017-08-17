@@ -33,7 +33,7 @@ class ProjectViewController: UIViewController {
         
            
             let project = Project()
-            project.id = createId(Project.self)
+            project.id = createId(Project.self, id: "id")
             project.name = nameTxtField.text!
             project.startDate = startDateTxtField.text!
             project.finishDate = finishDateTxtField.text!

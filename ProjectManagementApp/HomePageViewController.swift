@@ -13,6 +13,8 @@ class HomePageViewController: UIViewController , UITableViewDataSource , UITable
 
     
     var projects = [Project]()
+    var projectId = Int()
+    var projectName = String()
     
     @IBOutlet weak var MainBackImage: UIImageView!
     
@@ -31,14 +33,15 @@ class HomePageViewController: UIViewController , UITableViewDataSource , UITable
         projectsTableView.delegate = self
         projectsTableView.dataSource = self
         searchTxt.delegate = self
-        
-        
         deleteAll()
-       
-      
-
-        
         // Do any additional setup after loading the view.
+        readData(Project.self, predicate: nil) { (results) in
+            for each in results
+            {
+                projects.append(each)
+                projectsTableView.reloadData()
+            }
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         
@@ -76,15 +79,26 @@ class HomePageViewController: UIViewController , UITableViewDataSource , UITable
         return cell
     }
     
- 
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        projectId = projects[indexPath.row].id
+        projectName = projects[indexPath.row].name
+        return indexPath
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+         projectId = projects[indexPath.row].id
+        projectName = projects[indexPath.row].name
+        
+    }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete { //The user click on the delete button
             
             // Identify the item to delete
-            let project = projects[indexPath.row]
-            
-            
-            let title = "Delete \(project)?"
+            let oneProject = projects[indexPath.row]
+            let oneprojectName = projects[indexPath.row].name
+            let oneprojectId = projects[indexPath.row].id
+          
+            let title = "Delete \(oneprojectName)?"
             let message = "Are you sure you want to delete this item?"
             
             let ac = UIAlertController(title: title,
@@ -97,8 +111,20 @@ class HomePageViewController: UIViewController , UITableViewDataSource , UITable
             let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive,
                                              handler: { (action) -> Void in
                                                 // Remove the item from the store
-                                               // self.itemlist.removeItem(item)
                                                 
+                                                //fetch and delete tasks of this project
+                                                
+                                                let predicate = "id = \(oneprojectId)"
+                                                readData(Task.self, predicate: predicate) { (results) in
+                                                    for each in results
+                                                    {
+                                                        deleteRealm(each)
+                                                    }
+                                                }
+                                               self.projects.remove(at: indexPath.row)
+                                                deleteRealm(oneProject)
+                                                print("deleted successfully\(oneprojectName)")
+
                                                 
                                                 // Also remove that row from the table view with an animation
                                                 self.projectsTableView.deleteRows(at: [indexPath], with: .automatic)
@@ -111,22 +137,16 @@ class HomePageViewController: UIViewController , UITableViewDataSource , UITable
          // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
          }   */
     }
+    
    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "homeToProject"
-//        {
-//            
-//            if let selectedIndexPath = collectionView?.indexPathsForSelectedItems?.first {
-//                
-//                let vc = segue.destination as! ProjectViewController
-//                print("selected = \(selectedIndexPath.row)")
-//                print("selected = \(selectedIndexPath.item)")
-//                
-//                
-//                vc.name = projectName[selectedIndexPath.item]
-//                
-//            }
-//        }
+        
+        if segue.identifier == "proToNewTask" {
+            let vc = segue.destination as! UITabBarController
+            let dvc = vc.viewControllers![0] as! NewTaskViewController
+            dvc.projectId = self.projectId
+            dvc.projectName =  self.projectName + "'s Tasks" 
+            }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
