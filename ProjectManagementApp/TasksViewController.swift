@@ -74,41 +74,48 @@ class TasksViewController: UIViewController ,UITableViewDelegate , UITableViewDa
         
         return cell
     }
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.delete { //The user click on the delete button
-            
-            // Identify the item to delete
-            let name = tasks[indexPath.row].taskName
-            let onetask = tasks[indexPath.row]
-            
-            
-            let title = "Delete \(name)?"
-            let message = "Are you sure you want to delete this item?"
-            
-            let ac = UIAlertController(title: title,
-                                       message: message,
-                                       preferredStyle: UIAlertControllerStyle.actionSheet)
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
-            ac.addAction(cancelAction)
-            
-            let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive,
-                                             handler: { (action) -> Void in
-                                                self.tasks.remove(at: indexPath.row)
-                                                
-                                                deleteRealm(onetask)
-                                                
-                                                // Also remove that row from the table view with an animation
-                                                self.taskTableView.deleteRows(at: [indexPath], with: .left)
-
-            })
-            ac.addAction(deleteAction)
-            
-            // Present the alert controller
-            present(ac, animated: true, completion: nil)
-        }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
     }
-
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let editAction = UITableViewRowAction(style: .normal, title: "Edit", handler: { (action, indexPath) in
+            let alert = UIAlertController(title: "", message: "Edit Task Name", preferredStyle: .alert)
+            alert.addTextField(configurationHandler: { (textField) in
+                textField.text = self.tasks[indexPath.row].taskName
+            })
+            alert.addAction(UIAlertAction(title: "Update", style: .default, handler: { (updateAction) in
+                
+                let selectedTask = self.tasks[indexPath.row]
+                let newTaskName = alert.textFields!.first!.text!
+                
+                let realm = try! Realm()
+                try! realm.write {
+                    selectedTask.taskName = newTaskName
+                }
+                self.taskTableView.reloadRows(at: [indexPath], with: .fade)
+                
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: false)
+        })
+        
+        let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
+            
+            let oneTask = self.tasks[indexPath.row]
+            self.tasks.remove(at: indexPath.row)
+            deleteRealm(oneTask)
+            self.taskTableView.reloadData()
+        })
+        
+        return [deleteAction, editAction]
+        
+        
+    }
+    
+   
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

@@ -33,7 +33,7 @@ class HomePageViewController: UIViewController , UITableViewDataSource , UITable
         projectsTableView.delegate = self
         projectsTableView.dataSource = self
         searchTxt.delegate = self
-        deleteAll()
+        //deleteAll()
         // Do any additional setup after loading the view.
         readData(Project.self, predicate: nil) { (results) in
             for each in results
@@ -90,56 +90,53 @@ class HomePageViewController: UIViewController , UITableViewDataSource , UITable
         projectName = projects[indexPath.row].name
         
     }
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.delete { //The user click on the delete button
-            
-            // Identify the item to delete
-            let oneProject = projects[indexPath.row]
-            let oneprojectName = projects[indexPath.row].name
-            let oneprojectId = projects[indexPath.row].id
-          
-            let title = "Delete \(oneprojectName)?"
-            let message = "Are you sure you want to delete this item?"
-            
-            let ac = UIAlertController(title: title,
-                                       message: message,
-                                       preferredStyle: UIAlertControllerStyle.actionSheet)
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
-            ac.addAction(cancelAction)
-            
-            let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive,
-                                             handler: { (action) -> Void in
-                                                // Remove the item from the store
-                                                
-                                                //fetch and delete tasks of this project
-                                                
-                                                let predicate = "id = \(oneprojectId)"
-                                                readData(Task.self, predicate: predicate) { (results) in
-                                                    for each in results
-                                                    {
-                                                        deleteRealm(each)
-                                                    }
-                                                }
-                                               self.projects.remove(at: indexPath.row)
-                                                deleteRealm(oneProject)
-                                                print("deleted successfully\(oneprojectName)")
-
-                                                
-                                                // Also remove that row from the table view with an animation
-                                                self.projectsTableView.deleteRows(at: [indexPath], with: .automatic)
-            })
-            ac.addAction(deleteAction)
-            
-            // Present the alert controller
-            present(ac, animated: true, completion: nil)
-        } /*else if editingStyle == .insert {
-         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-         }   */
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
     }
     
-   
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let editAction = UITableViewRowAction(style: .normal, title: "Edit", handler: { (action, indexPath) in
+            let alert = UIAlertController(title: "", message: "Edit Project Name", preferredStyle: .alert)
+            alert.addTextField(configurationHandler: { (textField) in
+                textField.text = self.projects[indexPath.row].name
+            })
+            alert.addAction(UIAlertAction(title: "Update", style: .default, handler: { (updateAction) in
+                
+                let selectedProject = self.projects[indexPath.row]
+                let newProjectName = alert.textFields!.first!.text!
+                
+                let realm = try! Realm()
+                try! realm.write {
+                    selectedProject.name = newProjectName
+                }
+                self.projectsTableView.reloadRows(at: [indexPath], with: .fade)
+                
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: false)
+        })
+        
+        let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
+            let oneProject = self.projects[indexPath.row]
+            let oneprojectId = self.projects[indexPath.row].id
+            let predicate = "id = \(oneprojectId)"
+            readData(Task.self, predicate: predicate) { (results) in
+                for each in results
+                {
+                    deleteRealm(each)
+                }
+            }
+            self.projects.remove(at: indexPath.row)
+            deleteRealm(oneProject)
+            self.projectsTableView.reloadData()
+        })
+        
+        return [deleteAction, editAction]
+        
+
+    }
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "proToNewTask" {
             let vc = segue.destination as! UITabBarController
