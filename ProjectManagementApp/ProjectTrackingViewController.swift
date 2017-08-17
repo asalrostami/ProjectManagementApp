@@ -109,7 +109,7 @@ class ProjectTrackingViewController: UIViewController, UITableViewDataSource , U
             let durationTask = daysBetweenDates(firstDate: startDate_DateFormat, secondDate: finishDate_DateFormat)
             
             
-            durationOfTaskLbl.text = String(durationTask)
+            durationOfTaskLbl.text = String(durationTask) + "  days"
         }
         else
         {

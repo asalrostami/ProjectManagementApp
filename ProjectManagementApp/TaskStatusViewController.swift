@@ -41,9 +41,11 @@ class TaskStatusViewController: UIViewController {
             finishDateTaskLbl.text = ConverDateToString()
             finishDate = ConverDateToString()
             changeStatusBtn.isEnabled = false
+            changeStatusBtn.setTitleColor(.red, for: .normal)
         case 2:
             taskStatusLbl.text = statusNumToString(statusNum: status)
             changeStatusBtn.isEnabled = false
+            changeStatusBtn.setTitleColor(.red, for: .normal)
             
         default:
             status = 0
@@ -74,6 +76,7 @@ class TaskStatusViewController: UIViewController {
         if (selectedTaskStatus.finishDate != "")
         {
            changeStatusBtn.isEnabled = false
+            changeStatusBtn.setTitleColor(.red, for: .normal)
             finishDateTaskLbl.text = selectedTaskStatus.finishDate
 
         }
