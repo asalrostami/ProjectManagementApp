@@ -104,10 +104,27 @@ class TasksViewController: UIViewController ,UITableViewDelegate , UITableViewDa
         
         let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
             
-            let oneTask = self.tasks[indexPath.row]
-            self.tasks.remove(at: indexPath.row)
-            deleteRealm(oneTask)
-            self.taskTableView.reloadData()
+            
+            //alert before deleting
+            
+            let alert = UIAlertController(title: "Attention", message: "Are you sure to delete this Item?", preferredStyle: UIAlertControllerStyle.alert)
+            
+            // add two action (button)
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.destructive, handler: { action in
+                
+                let oneTask = self.tasks[indexPath.row]
+                self.tasks.remove(at: indexPath.row)
+                deleteRealm(oneTask)
+                self.taskTableView.reloadData()
+            }))
+            
+            
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
+            
+
+        
         })
         
         return [deleteAction, editAction]

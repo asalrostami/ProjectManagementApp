@@ -118,18 +118,34 @@ class HomePageViewController: UIViewController , UITableViewDataSource , UITable
         })
         
         let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
-            let oneProject = self.projects[indexPath.row]
-            let oneprojectId = self.projects[indexPath.row].id
-            let predicate = "id = \(oneprojectId)"
-            readData(Task.self, predicate: predicate) { (results) in
-                for each in results
-                {
-                    deleteRealm(each)
+            
+            //alert before deleting
+            
+            let alert = UIAlertController(title: "Attention", message: "Are you sure to delete this Item?", preferredStyle: UIAlertControllerStyle.alert)
+            
+            // add two action (button)
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.destructive, handler: { action in
+                
+                let oneProject = self.projects[indexPath.row]
+                let oneprojectId = self.projects[indexPath.row].id
+                let predicate = "id = \(oneprojectId)"
+                readData(Task.self, predicate: predicate) { (results) in
+                    for each in results
+                    {
+                        deleteRealm(each)
+                    }
                 }
-            }
-            self.projects.remove(at: indexPath.row)
-            deleteRealm(oneProject)
-            self.projectsTableView.reloadData()
+                self.projects.remove(at: indexPath.row)
+                deleteRealm(oneProject)
+                self.projectsTableView.reloadData()
+            }))
+            
+                
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
+            
+           
         })
         
         return [deleteAction, editAction]
@@ -195,7 +211,6 @@ class HomePageViewController: UIViewController , UITableViewDataSource , UITable
         // show the alert
         self.present(alert, animated: true, completion: nil)
     }
-    
 
 }
 

@@ -119,13 +119,7 @@ class ProjectTrackingViewController: UIViewController, UITableViewDataSource , U
         
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-           }
-    // Override to support rearranging the table view.
-    func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        
-        //itemlist.moveItem(from: fromIndexPath.row, to: to.row)
-    }
+   
     /// ### calculate number of status of tasks
     func calculateCountOfTask(model:[Task],status:Int) -> Int
     {
