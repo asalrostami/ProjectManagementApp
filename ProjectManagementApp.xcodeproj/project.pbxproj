@@ -140,10 +140,8 @@
 				C75B207A1F2FEEC900EDF48A /* Model */,
 				C75B20791F2FEEBF00EDF48A /* View */,
 				C75B20781F2FEE8000EDF48A /* Controller */,
-				C75B20581F2FD42E00EDF48A /* AppDelegate.swift */,
-				C75B205C1F2FD42E00EDF48A /* Main.storyboard */,
+				C7CE5D7A1F455B4400A7228A /* Delegate */,
 				C75B205F1F2FD42E00EDF48A /* Assets.xcassets */,
-				C75B20611F2FD42E00EDF48A /* LaunchScreen.storyboard */,
 				C75B20641F2FD42E00EDF48A /* Info.plist */,
 			);
 			path = ProjectManagementApp;
@@ -182,6 +180,8 @@
 				C7ECB0C11F40E23A00622A4B /* ProjectsTableViewCell.swift */,
 				C7D61D941F421074002439A4 /* DashboardTableViewCell.swift */,
 				C7D61D981F4223F1002439A4 /* ProjectTrackingTableViewCell.swift */,
+				C75B205C1F2FD42E00EDF48A /* Main.storyboard */,
+				C75B20611F2FD42E00EDF48A /* LaunchScreen.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -193,6 +193,14 @@
 				C7100C2D1F434D81005D690E /* Project.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		C7CE5D7A1F455B4400A7228A /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				C75B20581F2FD42E00EDF48A /* AppDelegate.swift */,
+			);
+			name = Delegate;
 			sourceTree = "<group>";
 		};
 		C7D61D9C1F424D48002439A4 /* Manager */ = {

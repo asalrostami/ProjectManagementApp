@@ -7,22 +7,47 @@
 //
 
 import UIKit
+import RealmSwift
 
-class TasksViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource{
+class TasksViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource,UITextFieldDelegate{
    
+    var tasks = [Task]()
+    var selectedTask = Task()
     
     @IBOutlet weak var searchTaskTxt: UITextField!
 
     @IBOutlet weak var taskTableView: UITableView!
     
-     let tasks = ["task1" , "task2" , "task3" , "task4","task5","task6"]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         taskTableView.delegate = self
         taskTableView.dataSource  = self
+        searchTaskTxt.delegate = self
+        
+        readData(Task.self, predicate: nil) { (results) in
+            for each in results
+            {
+                tasks.append(each)
+                taskTableView.reloadData()
+            }
+        }
+
 
         // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        tasks.removeAll()
+        readData(Task.self, predicate: nil) { (results) in
+            for each in results
+            {
+                tasks.append(each)
+                taskTableView.reloadData()
+            }
+        }
+        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,10 +66,11 @@ class TasksViewController: UIViewController ,UITableViewDelegate , UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellTasks", for: indexPath) as! TasksTableViewCell
-        
-        let taskName = tasks[indexPath.row]
-        
-        cell.taskLbl.text = taskName
+    
+        cell.taskLbl.text = tasks[indexPath.row].taskName
+        cell.startDateOfTaskCell.text = tasks[indexPath.row].startDate
+        cell.statusTaskCell.text = statusNumToString(statusNum: tasks[indexPath.row].status)
+        cell.finishDateCell.text = tasks[indexPath.row].finishDate
         
         return cell
     }
@@ -52,10 +78,11 @@ class TasksViewController: UIViewController ,UITableViewDelegate , UITableViewDa
         if editingStyle == UITableViewCellEditingStyle.delete { //The user click on the delete button
             
             // Identify the item to delete
-            let tasksName = tasks[indexPath.row]
+            let name = tasks[indexPath.row].taskName
+            let onetask = tasks[indexPath.row]
             
             
-            let title = "Delete \(tasksName)?"
+            let title = "Delete \(name)?"
             let message = "Are you sure you want to delete this item?"
             
             let ac = UIAlertController(title: title,
@@ -67,60 +94,74 @@ class TasksViewController: UIViewController ,UITableViewDelegate , UITableViewDa
             
             let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive,
                                              handler: { (action) -> Void in
-                                                // Remove the item from the store
-                                                // self.itemlist.removeItem(item)
+                                                self.tasks.remove(at: indexPath.row)
+                                                
+                                                deleteRealm(onetask)
                                                 
                                                 // Also remove that row from the table view with an animation
-                                                //self.projectsTableView.deleteRows(at: [indexPath], with: .automatic)
+                                                self.taskTableView.deleteRows(at: [indexPath], with: .left)
+
             })
             ac.addAction(deleteAction)
             
             // Present the alert controller
             present(ac, animated: true, completion: nil)
-        } /*else if editingStyle == .insert {
-         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-         }   */
+        }
     }
 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        let message = messages[indexPath.row]
-        //
-        //        guard let chatPartnerId = message.chatPartnerId() else{
-        //            return
-        //        }
-        //        let ref = Database.database().reference().child("Users").child(chatPartnerId)
-        //
-        //        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-        //
-        //            guard let dictionary = snapshot.value as? [String:AnyObject] else{
-        //                return
-        //            }
-        //
-        //            let user = User()
-        //            user.id = chatPartnerId
-        //            user.setValuesForKeys(dictionary)
-        //            self.showChatControllerForUser(user: user)
-        //
-        //        }, withCancel: nil)
+        
+         selectedTask = tasks[indexPath.row]
+        
+    }
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        
+        selectedTask = tasks[indexPath.row]
+        return indexPath
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //        if segue.identifier == "homeToProject"
-        //        {
-        //
-        //            if let selectedIndexPath = collectionView?.indexPathsForSelectedItems?.first {
-        //
-        //                let vc = segue.destination as! ProjectViewController
-        //                print("selected = \(selectedIndexPath.row)")
-        //                print("selected = \(selectedIndexPath.item)")
-        //
-        //
-        //                vc.name = projectName[selectedIndexPath.item]
-        //
-        //            }
-        //        }
+                if segue.identifier == "tasksToStatus"
+                {
+                    let vc = segue.destination as! TaskStatusViewController
+    
+                    vc.selectedTaskStatus = selectedTask
+        
+                   
+                }
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        self.tasks.removeAll()
+        //print(projects.count)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            if (textField.text?.characters.count)! > 0
+            {
+                //search in realm
+                let realm = try! Realm()
+                let predicate = NSPredicate(format: "taskName CONTAINS [c] %@", textField.text!)
+                let filter_project = realm.objects(Task).filter(predicate)
+                for each in filter_project
+                {
+                    self.tasks.append(each)
+                    self.taskTableView.reloadData()
+                }
+                
+            } else
+            {
+                readData(Task.self, predicate: nil, completion: { (results) in
+                    for each in results
+                    {
+                        self.tasks.append(each)
+                        self.taskTableView.reloadData()
+                    }
+                })
+            }
+            print(self.tasks.count)
+        }
+        return true
+
     }
     
     func showAlert(text:String)  {

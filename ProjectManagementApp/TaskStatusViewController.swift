@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import RealmSwift
 
 class TaskStatusViewController: UIViewController {
     
+    var selectedTaskStatus = Task()
     
     @IBAction func cancelBtn(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
@@ -26,14 +28,61 @@ class TaskStatusViewController: UIViewController {
     @IBOutlet weak var taskStatusLbl: UILabel!
     
     @IBAction func changeStatusBtn(_ sender: UIButton) {
+        var status = selectedTaskStatus.status
+        var finishDate = selectedTaskStatus.finishDate
+        switch status {
+        case 0:
+            status = 1
+            taskStatusLbl.text = statusNumToString(statusNum: status)
+        
+        case 1:
+            status = 2
+            taskStatusLbl.text = statusNumToString(statusNum: status)
+            finishDateTaskLbl.text = ConverDateToString()
+            finishDate = ConverDateToString()
+            changeStatusBtn.isEnabled = false
+        case 2:
+            taskStatusLbl.text = statusNumToString(statusNum: status)
+            changeStatusBtn.isEnabled = false
+            
+        default:
+            status = 0
+        }
+        
+
+        let realm = try! Realm()
+        
+        try! realm.write {
+            selectedTaskStatus.status = status
+            selectedTaskStatus.finishDate = finishDate
+            
+        }
+        
     }
     
     
+    @IBOutlet weak var changeStatusBtn: UIButton!
     @IBOutlet weak var finishLbl: UILabel!
     @IBOutlet weak var finishDateTaskLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        changeStatusBtn.isEnabled = true
+        taskNameTxt.text = selectedTaskStatus.taskName
+        startDateTaskLbl.text = selectedTaskStatus.startDate
+        taskStatusLbl.text = statusNumToString(statusNum: selectedTaskStatus.status)
+        if (selectedTaskStatus.finishDate != "")
+        {
+           changeStatusBtn.isEnabled = false
+            finishDateTaskLbl.text = selectedTaskStatus.finishDate
+
+        }
+        else
+        {
+             changeStatusBtn.isEnabled = true
+            finishDateTaskLbl.text = "task is not Done!"
+
+        }
        
         // Do any additional setup after loading the view.
     }
@@ -44,14 +93,6 @@ class TaskStatusViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
 
 }

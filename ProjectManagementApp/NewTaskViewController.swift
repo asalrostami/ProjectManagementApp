@@ -67,7 +67,7 @@ class NewTaskViewController: UIViewController , UITableViewDataSource , UITableV
         navigationItem.title = projectName
         print(projectName)
         print("\(projectId)")
-        startDateTaskLbl.text = DateAsString()
+        startDateTaskLbl.text = ConverDateToString()
         
         //fetch tasks of this project into the table view
         let predicate = "id = \(projectId)"
@@ -162,8 +162,7 @@ class NewTaskViewController: UIViewController , UITableViewDataSource , UITableV
                                                 // Also remove that row from the table view with an animation
                                                self.taskTableView.deleteRows(at: [indexPath], with: .left)
                                                 
-                                               // self.taskTableView.reloadData()
-            })
+                                                          })
             ac.addAction(deleteAction)
             
             // Present the alert controller

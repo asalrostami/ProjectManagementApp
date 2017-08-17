@@ -18,6 +18,7 @@ class ProjectTrackingTableViewCell: UITableViewCell {
     
     @IBOutlet weak var statusTaskCell: UILabel!
     
+    @IBOutlet weak var finishDateTaskCell: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

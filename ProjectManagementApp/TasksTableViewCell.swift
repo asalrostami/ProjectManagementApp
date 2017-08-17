@@ -14,6 +14,7 @@ class TasksTableViewCell: UITableViewCell {
     
     @IBOutlet weak var startDateOfTaskCell: UILabel!
     
+    @IBOutlet weak var finishDateCell: UILabel!
     
     @IBOutlet weak var statusTaskCell: UILabel!
     

@@ -330,7 +330,7 @@
                                                     <connections>
                                                         <outlet property="projectNameLblCell" destination="w8d-Om-0q1" id="TsE-8y-dEk"/>
                                                         <outlet property="startDateProjectCell" destination="KDF-mv-LLk" id="dHT-L2-c3g"/>
-                                                        <segue destination="lG3-az-DEY" kind="show" id="Pun-FQ-wPA"/>
+                                                        <segue destination="lG3-az-DEY" kind="show" identifier="dashboardToTracking" id="Pun-FQ-wPA"/>
                                                     </connections>
                                                 </tableViewCell>
                                             </prototypes>
@@ -479,7 +479,7 @@
                                                     <rect key="frame" x="0.0" y="28" width="359" height="79"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WBx-G5-eZt" id="zBO-62-KkU">
-                                                        <rect key="frame" x="0.0" y="0.0" width="359" height="78.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="359" height="79"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84h-tR-p4v">
@@ -519,6 +519,18 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wr9-cn-Hm1">
+                                                                <rect key="frame" x="284" y="47" width="0.0" height="0.0"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finish Date :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cjx-bG-h20">
+                                                                <rect key="frame" x="189" y="31" width="75" height="16"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstItem="84h-tR-p4v" firstAttribute="top" secondItem="zBO-62-KkU" secondAttribute="top" constant="5" id="Cf9-0L-1Ee"/>
@@ -526,15 +538,20 @@
                                                             <constraint firstItem="eE5-zj-pM6" firstAttribute="top" secondItem="1af-TJ-Awg" secondAttribute="bottom" constant="3.5" id="Sis-mA-3hF"/>
                                                             <constraint firstItem="jW5-tl-Ue0" firstAttribute="leading" secondItem="1af-TJ-Awg" secondAttribute="trailing" constant="20" id="Uvv-io-Jeo"/>
                                                             <constraint firstAttribute="trailing" secondItem="84h-tR-p4v" secondAttribute="trailing" constant="5" id="Zfq-C6-zmd"/>
+                                                            <constraint firstItem="wr9-cn-Hm1" firstAttribute="leading" secondItem="Cjx-bG-h20" secondAttribute="trailing" constant="20" id="Zu7-nK-58r"/>
                                                             <constraint firstItem="84h-tR-p4v" firstAttribute="leading" secondItem="zBO-62-KkU" secondAttribute="leading" constant="5" id="cPb-aH-C1E"/>
+                                                            <constraint firstItem="Cjx-bG-h20" firstAttribute="baseline" secondItem="jW5-tl-Ue0" secondAttribute="baseline" id="dYj-nS-8k5"/>
                                                             <constraint firstItem="eE5-zj-pM6" firstAttribute="leading" secondItem="zBO-62-KkU" secondAttribute="leading" constant="5" id="fB1-Fx-ScV"/>
                                                             <constraint firstItem="1af-TJ-Awg" firstAttribute="leading" secondItem="zBO-62-KkU" secondAttribute="leading" constant="5" id="fst-S3-gvw"/>
+                                                            <constraint firstItem="Cjx-bG-h20" firstAttribute="leading" secondItem="jW5-tl-Ue0" secondAttribute="trailing" constant="61" id="gX2-Ke-qUJ"/>
                                                             <constraint firstItem="9z5-6O-Psj" firstAttribute="baseline" secondItem="eE5-zj-pM6" secondAttribute="baseline" id="hYg-2I-Ywt"/>
                                                             <constraint firstItem="jW5-tl-Ue0" firstAttribute="baseline" secondItem="1af-TJ-Awg" secondAttribute="baseline" id="iVl-NC-wB7"/>
                                                             <constraint firstItem="9z5-6O-Psj" firstAttribute="leading" secondItem="eE5-zj-pM6" secondAttribute="trailing" constant="20" id="lLH-wp-avb"/>
+                                                            <constraint firstItem="Cjx-bG-h20" firstAttribute="baseline" secondItem="wr9-cn-Hm1" secondAttribute="baseline" id="nVr-YA-c3e"/>
                                                         </constraints>
                                                     </tableViewCellContentView>
                                                     <connections>
+                                                        <outlet property="finishDateTaskCell" destination="wr9-cn-Hm1" id="Keo-n7-Kne"/>
                                                         <outlet property="startDateTaskCell" destination="jW5-tl-Ue0" id="tIc-Lz-lIm"/>
                                                         <outlet property="statusTaskCell" destination="9z5-6O-Psj" id="vUa-Vy-3pI"/>
                                                         <outlet property="taskNameLblCell" destination="84h-tR-p4v" id="VDG-Iw-bYg"/>
@@ -552,8 +569,8 @@
                                             <color key="textColor" red="0.9190120101" green="0.27248406409999998" blue="0.62569272519999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ClJ-1T-ykC">
-                                            <rect key="frame" x="171" y="565" width="180" height="23"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ClJ-1T-ykC">
+                                            <rect key="frame" x="171" y="588" width="180" height="0.0"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="180" id="GzL-zb-EaS"/>
                                             </constraints>
@@ -626,6 +643,7 @@
                     </view>
                     <connections>
                         <outlet property="durationOfTaskLbl" destination="ClJ-1T-ykC" id="t9W-h1-Y9J"/>
+                        <outlet property="naviItem" destination="mGI-ZK-U85" id="buz-Nv-1zI"/>
                         <outlet property="numOfDoneTaskLbl" destination="vEK-jO-abH" id="BGc-wx-d0n"/>
                         <outlet property="numOfInProgressLbl" destination="2z7-b9-KZA" id="wRX-Kc-k6d"/>
                         <outlet property="numOfToDoTaskLbl" destination="dwo-zh-kih" id="TNF-wb-Iho"/>
@@ -679,7 +697,7 @@
                                                     <rect key="frame" x="0.0" y="28" width="359" height="80"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qA2-8q-xcS" id="VWY-Jn-2VC">
-                                                        <rect key="frame" x="0.0" y="0.0" width="359" height="79.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="359" height="80"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWO-Pd-gdT">
@@ -713,12 +731,28 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAU-x8-E56">
+                                                                <rect key="frame" x="263" y="34" width="33" height="16"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finish Date :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teC-X3-jqi">
+                                                                <rect key="frame" x="180" y="34" width="75" height="16"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstItem="ezD-gx-wLp" firstAttribute="top" secondItem="lCk-h4-QL8" secondAttribute="bottom" constant="5" id="0Y9-Dn-vga"/>
+                                                            <constraint firstItem="teC-X3-jqi" firstAttribute="baseline" secondItem="9O7-2x-kVD" secondAttribute="baseline" id="3C0-WT-r5f"/>
+                                                            <constraint firstItem="aAU-x8-E56" firstAttribute="leading" secondItem="teC-X3-jqi" secondAttribute="trailing" constant="8" symbolic="YES" id="51g-uT-JQH"/>
                                                             <constraint firstItem="cWO-Pd-gdT" firstAttribute="top" secondItem="VWY-Jn-2VC" secondAttribute="top" constant="5" id="5Nq-GY-6dP"/>
                                                             <constraint firstItem="9O7-2x-kVD" firstAttribute="leading" secondItem="lCk-h4-QL8" secondAttribute="trailing" constant="8" id="5OK-dE-g9y"/>
                                                             <constraint firstAttribute="trailing" secondItem="cWO-Pd-gdT" secondAttribute="trailing" constant="5" id="7OV-oP-YrK"/>
+                                                            <constraint firstItem="teC-X3-jqi" firstAttribute="baseline" secondItem="aAU-x8-E56" secondAttribute="baseline" id="BIV-ox-ssO"/>
+                                                            <constraint firstItem="teC-X3-jqi" firstAttribute="leading" secondItem="9O7-2x-kVD" secondAttribute="trailing" constant="64" id="I5w-Kr-4at"/>
                                                             <constraint firstItem="CAe-19-vhj" firstAttribute="leading" secondItem="ezD-gx-wLp" secondAttribute="trailing" constant="8" id="Igi-YI-Rzx"/>
                                                             <constraint firstItem="cWO-Pd-gdT" firstAttribute="leading" secondItem="VWY-Jn-2VC" secondAttribute="leading" constant="5" id="We8-ay-VjG"/>
                                                             <constraint firstItem="lCk-h4-QL8" firstAttribute="leading" secondItem="VWY-Jn-2VC" secondAttribute="leading" constant="5" id="cS6-If-66B"/>
@@ -729,10 +763,11 @@
                                                         </constraints>
                                                     </tableViewCellContentView>
                                                     <connections>
+                                                        <outlet property="finishDateCell" destination="aAU-x8-E56" id="s89-BV-158"/>
                                                         <outlet property="startDateOfTaskCell" destination="9O7-2x-kVD" id="Dpb-aP-sbZ"/>
                                                         <outlet property="statusTaskCell" destination="CAe-19-vhj" id="7bf-xf-CK4"/>
                                                         <outlet property="taskLbl" destination="cWO-Pd-gdT" id="aHV-z0-tdl"/>
-                                                        <segue destination="04c-bV-qPg" kind="show" id="vM8-yi-pSe"/>
+                                                        <segue destination="04c-bV-qPg" kind="show" identifier="tasksToStatus" id="vM8-yi-pSe"/>
                                                     </connections>
                                                 </tableViewCell>
                                             </prototypes>
@@ -808,11 +843,6 @@
                                                     <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="nPc-kG-PEv">
                                                         <connections>
                                                             <action selector="cancelBtn:" destination="04c-bV-qPg" id="ksZ-Ue-EKv"/>
-                                                        </connections>
-                                                    </barButtonItem>
-                                                    <barButtonItem key="rightBarButtonItem" systemItem="save" id="T6J-iV-lmH">
-                                                        <connections>
-                                                            <action selector="saveBtn:" destination="04c-bV-qPg" id="gJQ-co-QfJ"/>
                                                         </connections>
                                                     </barButtonItem>
                                                 </navigationItem>
@@ -931,6 +961,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="changeStatusBtn" destination="1t0-Qi-o7X" id="yWj-5Q-uMK"/>
                         <outlet property="finishDateTaskLbl" destination="Xz7-aS-OSr" id="mb4-hN-OJc"/>
                         <outlet property="finishLbl" destination="1lR-gK-fNh" id="QKO-hV-AHX"/>
                         <outlet property="startDateTaskLbl" destination="rxH-Ky-3PA" id="oKs-yl-sko"/>
