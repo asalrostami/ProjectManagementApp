@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0FF8C391AB61901CF2CCC8CF /* Pods_ProjectManagementAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D9AD9E9DFDE0F759587C6DE /* Pods_ProjectManagementAppTests.framework */; };
 		BE13A87D90024E379F8EC7DC /* Pods_ProjectManagementApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 116C2F6382AFEC6A972A165C /* Pods_ProjectManagementApp.framework */; };
+		C703A63B1F46038400C69625 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = C703A63A1F46038400C69625 /* Note.swift */; };
 		C7100C2C1F434CE5005D690E /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7100C2B1F434CE5005D690E /* Task.swift */; };
 		C7100C2E1F434D81005D690E /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7100C2D1F434D81005D690E /* Project.swift */; };
 		C71423951F324C6B00A191F7 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71423941F324C6B00A191F7 /* HomePageViewController.swift */; };
@@ -64,6 +65,7 @@
 		3D6780A172DAB451676710A7 /* Pods-ProjectManagementAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectManagementAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectManagementAppTests/Pods-ProjectManagementAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		6D9AD9E9DFDE0F759587C6DE /* Pods_ProjectManagementAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectManagementAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C03DDE1DE95D84BD7E5C9D2 /* Pods-ProjectManagementApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectManagementApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectManagementApp/Pods-ProjectManagementApp.debug.xcconfig"; sourceTree = "<group>"; };
+		C703A63A1F46038400C69625 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		C7100C2B1F434CE5005D690E /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		C7100C2D1F434D81005D690E /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		C71423941F324C6B00A191F7 /* HomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			children = (
 				C7100C2B1F434CE5005D690E /* Task.swift */,
 				C7100C2D1F434D81005D690E /* Project.swift */,
+				C703A63A1F46038400C69625 /* Note.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				C7D61D931F420FFC002439A4 /* ProjectTrackingViewController.swift in Sources */,
 				C7ECB0BC1F409F5300622A4B /* NewTaskTableViewCell.swift in Sources */,
 				C7ECB0BE1F40CD2800622A4B /* NotesViewController.swift in Sources */,
+				C703A63B1F46038400C69625 /* Note.swift in Sources */,
 				C7703E621F397EAF007CB7AA /* NewTaskViewController.swift in Sources */,
 				C7100C2C1F434CE5005D690E /* Task.swift in Sources */,
 				C7703E5A1F395C77007CB7AA /* TasksViewController.swift in Sources */,

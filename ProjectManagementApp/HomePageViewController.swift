@@ -145,7 +145,14 @@ class HomePageViewController: UIViewController , UITableViewDataSource , UITable
             let vc = segue.destination as! UITabBarController
             let dvc = vc.viewControllers![0] as! NewTaskViewController
             dvc.projectId = self.projectId
-            dvc.projectName =  self.projectName + "'s Tasks" 
+            dvc.projectName =  self.projectName + "'s Tasks"
+            
+            
+            let vc2 = segue.destination as! UITabBarController
+            let dvc2 = vc2.viewControllers![1] as! NotesViewController
+            dvc2.projectIdNote = self.projectId
+            dvc2.projectNameNote =  self.projectName + "'s Notes"
+            
             }
     }
     

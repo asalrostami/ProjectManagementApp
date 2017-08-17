@@ -10,6 +10,9 @@ import UIKit
 
 class NotesViewController: UIViewController , UITableViewDataSource , UITableViewDelegate{
     
+    var notes = [Note]()
+    var projectIdNote = Int()
+    var projectNameNote = String()
     
     @IBAction func cancelBtn(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
@@ -17,17 +20,53 @@ class NotesViewController: UIViewController , UITableViewDataSource , UITableVie
     
 
     @IBAction func saveBtn(_ sender: UIBarButtonItem) {
+        
+        if noteTxt.text != ""
+        {
+            
+            let note = Note()
+            note.id = projectIdNote
+            note.noteId = createId(Note.self , id: "noteId")
+            note.noteDesc = noteTxt.text!
+            note.noteDate = ConverDateToString()
+
+            saveData(note, isUpdate: true)
+            notes.append(note)
+            DispatchQueue.main.async {
+                self.notesTableView.reloadData()
+            }
+            print(" note  added in the realm successfully by id\(note.id)")
+            print(" note  added in the realm successfully by taskid\(note.noteId)")
+        }
+        else
+        {
+            showAlert(text: "Please enter Note Description!")
+        }
     }
     
     @IBOutlet weak var noteTxt: UITextView!
     
     
+    @IBOutlet weak var naviItem: UINavigationItem!
     @IBOutlet weak var notesTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         notesTableView.delegate = self
         notesTableView.dataSource = self
+        
+        naviItem.title = projectNameNote
+        
+        //fetch tasks of this project into the table view
+        let predicate = "id = \(projectIdNote)"
+        readData(Note.self, predicate: predicate) { (results) in
+            for each in results
+            {
+                notes.append(each)
+                notesTableView.reloadData()
+            }
+        }
+
 
         // Do any additional setup after loading the view.
     }
@@ -36,23 +75,22 @@ class NotesViewController: UIViewController , UITableViewDataSource , UITableVie
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    var projectName = ["asalPro" , "siamakPro" , "JuliePro" , "aPro","bPro","cpro"]
-
+    
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return projectName.count
+        return notes.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellnotes", for: indexPath) as! NotesTableViewCell
         
-        let proName = projectName[indexPath.row]
-        
-        cell.descLbl.text = proName
+    
+        cell.descLbl.text = notes[indexPath.row].noteDesc
+        cell.dateNoteLblCell.text = notes[indexPath.row].noteDate
         
         return cell
     }
@@ -83,10 +121,11 @@ class NotesViewController: UIViewController , UITableViewDataSource , UITableVie
         if editingStyle == UITableViewCellEditingStyle.delete { //The user click on the delete button
             
             // Identify the item to delete
-            let project = projectName[indexPath.row]
+            let oneNote = notes[indexPath.row]
+            let oneNoteDesc = notes[indexPath.row].noteDesc
             
             
-            let title = "Delete \(project)?"
+            let title = "Delete \(oneNoteDesc)?"
             let message = "Are you sure you want to delete this item?"
             
             let ac = UIAlertController(title: title,
@@ -99,23 +138,31 @@ class NotesViewController: UIViewController , UITableViewDataSource , UITableVie
             let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive,
                                              handler: { (action) -> Void in
                                                 // Remove the item from the store
-                                                // self.itemlist.removeItem(item)
+                                                self.notes.remove(at: indexPath.row)
+                                                
+                                                deleteRealm(oneNote)
+                                                print("deleted successfully\(oneNoteDesc)")
                                                 
                                                 // Also remove that row from the table view with an animation
-                                               // self.projectsTableView.deleteRows(at: [indexPath], with: .automatic)
+                                                self.notesTableView.deleteRows(at: [indexPath], with: .left)
+
             })
             ac.addAction(deleteAction)
             
             // Present the alert controller
             present(ac, animated: true, completion: nil)
-        } /*else if editingStyle == .insert {
-         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-         }   */
+        }
     }
-    // Override to support rearranging the table view.
-    func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+   
+    func showAlert(text:String)  {
+        let alert = UIAlertController(title: "Attention", message: text, preferredStyle: UIAlertControllerStyle.alert)
         
-        //itemlist.moveItem(from: fromIndexPath.row, to: to.row)
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
     }
+    
 
 }
